@@ -1,0 +1,21 @@
+services:
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: elysion7-qdrant
+    restart: unless-stopped
+
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+
+    environment:
+      QDRANT__LOG_LEVEL: WARN
+
+    deploy:
+      resources:
+        limits:
+          memory: 1G

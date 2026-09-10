@@ -1,0 +1,17 @@
+# Environnements et caches Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Données générées localement : clones de sources, index vectoriel et caches
+data/repos/
+data/qdrant/
+data/cache/
+data/documents/
+
+# Données opérationnelles locales
+backups/
+.env
+.env.*
+!.env.example
