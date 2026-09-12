@@ -2,6 +2,7 @@
 
 import hashlib
 import os
+import uuid
 from typing import Iterable
 
 from fastembed import TextEmbedding
@@ -20,7 +21,8 @@ def point_id(chunk: dict) -> str:
         str(chunk.get(key, ""))
         for key in ("library", "commit", "path", "section", "chunk_index", "content")
     )
-    return hashlib.sha256(identity.encode("utf-8")).hexdigest()
+    digest = hashlib.sha256(identity.encode("utf-8")).digest()
+    return str(uuid.UUID(bytes=digest[:16]))
 
 
 def source_url(chunk: dict) -> str | None:
