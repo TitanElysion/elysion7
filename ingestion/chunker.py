@@ -42,7 +42,7 @@ def split_text(
     if len(text) <= chunk_size:
         if len(text) >= MIN_CHUNK_SIZE:
             return [text]
-    return []
+        return []
 
     chunks = []
 
@@ -134,12 +134,12 @@ def chunk_documents(
 
             results.append({
                 "library": document["library"],
-                "version": document["version"],
-                "repository": document["repository"],
-                "branch": document["branch"],
-                "commit": document["commit"],
-                "commit_date": document["commit_date"],
-                "source": document["source"],
+                "version": document.get("version", "unknown"),
+                "repository": document.get("repository"),
+                "branch": document.get("branch"),
+                "commit": document.get("commit"),
+                "commit_date": document.get("commit_date"),
+                "source": document.get("source", "unknown"),
                 "path": document["path"],
                 "language": document["language"],
                 "title": document["title"],
