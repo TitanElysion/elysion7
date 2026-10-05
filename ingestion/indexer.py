@@ -8,7 +8,7 @@ from typing import Iterable
 from fastembed import TextEmbedding
 from qdrant_client import QdrantClient, models
 
-from ingestion.pipeline import build_chunks
+from ingestion.pipeline import build_chunks, generate_manifest
 
 
 COLLECTION_NAME = os.getenv("QDRANT_COLLECTION", "technical_knowledge")
@@ -48,6 +48,7 @@ def batched(items: list[dict], size: int) -> Iterable[list[dict]]:
 
 
 def index_library(library: str, qdrant_url: str | None = None) -> int:
+    generate_manifest(library)
     chunks = build_chunks(library)
     if not chunks:
         return 0
